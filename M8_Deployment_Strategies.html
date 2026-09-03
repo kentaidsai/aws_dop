@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Module 8 · 部署策略</title><style>
+  :root{--navy:#1b2838;--navy2:#243447;--ink:#0f1722;--orange:#ff9900;--orange-d:#e17b00;
+    --teal:#1aa9a3;--teal-d:#128b86;--paper:#f6f8fb;--card:#fff;--line:#e4e9f0;--muted:#5f6b7a;--good:#1f9d61;
+    --sh:0 2px 10px rgba(20,30,45,.06),0 10px 30px rgba(20,30,45,.05);}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+    background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 22px 60px}
+  .hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 60%,#2c4a63 100%);
+    color:#fff;border-radius:22px;padding:34px 38px;position:relative;overflow:hidden;box-shadow:var(--sh)}
+  .hero::after{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;
+    background:radial-gradient(circle,rgba(255,153,0,.28),transparent 68%)}
+  .kicker{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--orange);
+    background:rgba(255,153,0,.12);border:1px solid rgba(255,153,0,.35);padding:5px 12px;border-radius:999px}
+  h1{font-size:32px;font-weight:800;margin:14px 0 6px;letter-spacing:-.5px}
+  .hero .sub{font-size:15px;color:#c7d3e0;max-width:780px}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+  .chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);
+    border-radius:10px;padding:8px 14px;font-size:13px;color:#e7eef6}
+  .chip b{color:#fff}
+  .obj{margin-top:14px;font-size:13px;color:#aeb9c7}.obj b{color:#ffcf8a;font-weight:700}
+  .section-h{display:flex;align-items:center;gap:12px;margin:36px 4px 16px}
+  .section-h .n{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;
+    background:var(--navy);color:#fff;font-weight:800;font-size:15px;flex:0 0 auto}
+  .section-h h2{font-size:20px;font-weight:800;letter-spacing:-.2px}
+  .section-h .en{font-size:12.5px;color:var(--muted);font-weight:600;letter-spacing:.05em}
+  .dims{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+  .dim{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px 15px 14px;
+    box-shadow:var(--sh);border-top:3px solid var(--c)}
+  .dim .top{display:flex;align-items:center;gap:9px;margin-bottom:7px}
+  .dim .ic{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;flex:0 0 auto;
+    background:color-mix(in srgb,var(--c) 14%,#fff);color:var(--c);font-size:16px}
+  .dim .no{font-size:11px;font-weight:800;color:var(--c);letter-spacing:.05em}
+  .dim h3{font-size:14.5px;font-weight:800;line-height:1.3}
+  .dim .en{font-size:11px;color:var(--muted);font-weight:600}
+  .dim p{font-size:12.2px;color:#48586a;margin-top:6px}
+  .dim .eg{font-size:11.4px;color:var(--muted);margin-top:7px;padding-top:7px;border-top:1px dashed var(--line)}
+  .dim .eg b{color:#3a4756}
+  .kc{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .qcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:17px;box-shadow:var(--sh)}
+  .qcard .qn{font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--orange-d);text-transform:uppercase}
+  .qcard .q{font-size:13.5px;font-weight:700;margin:6px 0 10px;color:#22303f}
+  .ans{display:flex;gap:9px;align-items:flex-start;background:#edf9f1;border:1px solid #bfe6cf;border-radius:10px;padding:10px 12px}
+  .ans .ck{color:#fff;background:var(--good);width:20px;height:20px;border-radius:50%;
+    display:grid;place-items:center;font-size:12px;flex:0 0 auto;margin-top:1px}
+  .ans p{font-size:12.4px;color:#1d5138}.ans p b{color:#12492e}
+  .takeaway{margin-top:32px;background:linear-gradient(120deg,#fff7ea,#fdeede);
+    border:1px solid #f4d9a8;border-radius:16px;padding:20px 24px;display:flex;gap:15px;align-items:flex-start}
+  .takeaway .star{font-size:26px;line-height:1}
+  .takeaway h3{font-size:15px;font-weight:800;color:var(--orange-d);margin-bottom:4px}
+  .takeaway p{font-size:13.5px;color:#5a4a2e}
+  footer{margin-top:30px;text-align:center;font-size:11.5px;color:var(--muted)}
+  @media(max-width:920px){.dims{grid-template-columns:repeat(2,1fr)}.kc{grid-template-columns:1fr}h1{font-size:25px}}
+  @media(max-width:540px){.dims{grid-template-columns:1fr}}
+  @media print{body{background:#fff}.wrap{max-width:100%}.hero,.dim,.qcard{box-shadow:none}}
+</style></head><body><div class="wrap"><header class="hero"><span class="kicker">◆ Module 8 · DevOps Engineering on AWS</span><h1>部署策略</h1><div class="sub">比較 In-place、Rolling、Immutable、Blue/Green 等持續部署策略</div><div class="obj"><b>學習目標：</b> 部署設定差異 · Blue/Green 實作 · 分段部署降低風險</div><div class="hero-meta"><span class="chip">📑 共 <b>60</b> 張投影片</span><span class="chip">🎯 <b>4</b> 個學習目標</span></div></header><div class="section-h"><div class="n">1</div><div><h2>重點概念</h2><div class="en">Key Concepts · In-place → Rolling → Immutable → Blue/Green</div></div></div><div class="dims"><div class="dim" style="--c:#e0568a"><div class="top"><div class="ic">🔄</div><div><div class="no">01</div></div></div><h3>In-place 部署</h3><div class="en">In-Place Deployment</div><p>直接在既有執行個體上更新版本，速度快但會有停機時間。</p></div><div class="dim" style="--c:#d64545"><div class="top"><div class="ic">🎢</div><div><div class="no">02</div></div></div><h3>Rolling 部署</h3><div class="en">Rolling Deployment</div><p>分批逐步更新機群，新舊版本並存，零停機但需考量雙版本相容性。</p></div><div class="dim" style="--c:#3b7dd8"><div class="top"><div class="ic">🏗️</div><div><div class="no">03</div></div></div><h3>Immutable 部署</h3><div class="en">Immutable Deployment</div><p>建立全新基礎設施部署新版本，失敗時只需終止新 Auto Scaling 群組即可回滾。</p></div><div class="dim" style="--c:#1aa9a3"><div class="top"><div class="ic">🔵🟢</div><div><div class="no">04</div></div></div><h3>Blue/Green 部署</h3><div class="en">Blue/Green Deployment</div><p>併行維護兩套環境，透過流量切換部署，出問題可立即切回原環境。</p></div><div class="dim" style="--c:#7c6ce0"><div class="top"><div class="ic">⚙️</div><div><div class="no">05</div></div></div><h3>CodeDeploy 部署設定</h3><div class="en">Deployment Configurations</div><p>EC2 用 OneAtATime/HalfAtATime/AllAtOnce；ECS/Lambda 另支援 Canary/Linear。</p></div><div class="dim" style="--c:#128b86"><div class="top"><div class="ic">🌐</div><div><div class="no">06</div></div></div><h3>DNS 漸進式切換</h3><div class="en">Gradual DNS Cutover</div><p>用 Route 53 將流量從 Blue 環境逐步轉移到 Green 環境並持續監控。</p></div><div class="dim" style="--c:#e17b00"><div class="top"><div class="ic">🚩</div><div><div class="no">07</div></div></div><h3>功能旗標/暗啟動</h3><div class="en">Dark Launch</div><p>新舊程式碼路徑並存，用 feature flag 控制上線，適合對子集使用者測試。</p></div><div class="dim" style="--c:#1b2838"><div class="top"><div class="ic">✂️</div><div><div class="no">08</div></div></div><h3>分段部署</h3><div class="en">Segmentation</div><p>依區域/可用區/單機（Canary）分段部署，降低故障影響範圍並加快回滾。</p></div></div><div class="section-h"><div class="n">✓</div><div><h2>隨堂測驗考點</h2><div class="en">Knowledge Checks</div></div></div><div class="kc"><div class="qcard"><div class="qn">Knowledge Check 1</div><div class="q">哪種部署策略是用全新基礎設施取代舊版本？</div><div class="ans"><div class="ck">✓</div><p><b>Immutable（不可變）部署</b>。</p></div></div><div class="qcard"><div class="qn">Knowledge Check 2</div><div class="q">分段部署「不」具備的效益是？</div><div class="ans"><div class="ck">✓</div><p><b>加快整體部署速度</b>不是分段部署的目的，降低風險與快速回滾才是。</p></div></div></div><div class="takeaway"><div class="star">⭐</div><div><h3>一句話總結</h3><p>沒有單一最佳部署策略——依風險承受度在 <b>In-place/Rolling/Immutable/Blue-Green</b> 間權衡取捨。</p></div></div><footer>Module 8: Deployment Strategies · DevOps Engineering on AWS</footer></div></body></html>

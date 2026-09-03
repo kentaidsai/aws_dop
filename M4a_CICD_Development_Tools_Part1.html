@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Module 4a · CI/CD 開發工具（上）</title><style>
+  :root{--navy:#1b2838;--navy2:#243447;--ink:#0f1722;--orange:#ff9900;--orange-d:#e17b00;
+    --teal:#1aa9a3;--teal-d:#128b86;--paper:#f6f8fb;--card:#fff;--line:#e4e9f0;--muted:#5f6b7a;--good:#1f9d61;
+    --sh:0 2px 10px rgba(20,30,45,.06),0 10px 30px rgba(20,30,45,.05);}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+    background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 22px 60px}
+  .hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 60%,#2c4a63 100%);
+    color:#fff;border-radius:22px;padding:34px 38px;position:relative;overflow:hidden;box-shadow:var(--sh)}
+  .hero::after{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;
+    background:radial-gradient(circle,rgba(255,153,0,.28),transparent 68%)}
+  .kicker{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--orange);
+    background:rgba(255,153,0,.12);border:1px solid rgba(255,153,0,.35);padding:5px 12px;border-radius:999px}
+  h1{font-size:32px;font-weight:800;margin:14px 0 6px;letter-spacing:-.5px}
+  .hero .sub{font-size:15px;color:#c7d3e0;max-width:780px}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+  .chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);
+    border-radius:10px;padding:8px 14px;font-size:13px;color:#e7eef6}
+  .chip b{color:#fff}
+  .obj{margin-top:14px;font-size:13px;color:#aeb9c7}.obj b{color:#ffcf8a;font-weight:700}
+  .section-h{display:flex;align-items:center;gap:12px;margin:36px 4px 16px}
+  .section-h .n{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;
+    background:var(--navy);color:#fff;font-weight:800;font-size:15px;flex:0 0 auto}
+  .section-h h2{font-size:20px;font-weight:800;letter-spacing:-.2px}
+  .section-h .en{font-size:12.5px;color:var(--muted);font-weight:600;letter-spacing:.05em}
+  .dims{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+  .dim{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px 15px 14px;
+    box-shadow:var(--sh);border-top:3px solid var(--c)}
+  .dim .top{display:flex;align-items:center;gap:9px;margin-bottom:7px}
+  .dim .ic{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;flex:0 0 auto;
+    background:color-mix(in srgb,var(--c) 14%,#fff);color:var(--c);font-size:16px}
+  .dim .no{font-size:11px;font-weight:800;color:var(--c);letter-spacing:.05em}
+  .dim h3{font-size:14.5px;font-weight:800;line-height:1.3}
+  .dim .en{font-size:11px;color:var(--muted);font-weight:600}
+  .dim p{font-size:12.2px;color:#48586a;margin-top:6px}
+  .dim .eg{font-size:11.4px;color:var(--muted);margin-top:7px;padding-top:7px;border-top:1px dashed var(--line)}
+  .dim .eg b{color:#3a4756}
+  .kc{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .qcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:17px;box-shadow:var(--sh)}
+  .qcard .qn{font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--orange-d);text-transform:uppercase}
+  .qcard .q{font-size:13.5px;font-weight:700;margin:6px 0 10px;color:#22303f}
+  .ans{display:flex;gap:9px;align-items:flex-start;background:#edf9f1;border:1px solid #bfe6cf;border-radius:10px;padding:10px 12px}
+  .ans .ck{color:#fff;background:var(--good);width:20px;height:20px;border-radius:50%;
+    display:grid;place-items:center;font-size:12px;flex:0 0 auto;margin-top:1px}
+  .ans p{font-size:12.4px;color:#1d5138}.ans p b{color:#12492e}
+  .takeaway{margin-top:32px;background:linear-gradient(120deg,#fff7ea,#fdeede);
+    border:1px solid #f4d9a8;border-radius:16px;padding:20px 24px;display:flex;gap:15px;align-items:flex-start}
+  .takeaway .star{font-size:26px;line-height:1}
+  .takeaway h3{font-size:15px;font-weight:800;color:var(--orange-d);margin-bottom:4px}
+  .takeaway p{font-size:13.5px;color:#5a4a2e}
+  footer{margin-top:30px;text-align:center;font-size:11.5px;color:var(--muted)}
+  @media(max-width:920px){.dims{grid-template-columns:repeat(2,1fr)}.kc{grid-template-columns:1fr}h1{font-size:25px}}
+  @media(max-width:540px){.dims{grid-template-columns:1fr}}
+  @media print{body{background:#fff}.wrap{max-width:100%}.hero,.dim,.qcard{box-shadow:none}}
+</style></head><body><div class="wrap"><header class="hero"><span class="kicker">◆ Module 4a · DevOps Engineering on AWS</span><h1>CI/CD 開發工具（上）</h1><div class="sub">版本控制最佳實務，以及 AWS CodeBuild 與 CodeDeploy 的建置與部署自動化</div><div class="obj"><b>學習目標：</b> 原始碼控制實務 · CodeBuild 建置流程 · CodeDeploy 部署到多種運算平台</div><div class="hero-meta"><span class="chip">📑 共 <b>64</b> 張投影片</span><span class="chip">🧪 <b>Lab 2</b>：CodeDeploy 部署到 EC2 機群</span></div></header><div class="section-h"><div class="n">1</div><div><h2>重點概念</h2><div class="en">Key Concepts · 版本控制 → CodeBuild → CodeDeploy</div></div></div><div class="dims"><div class="dim" style="--c:#e0568a"><div class="top"><div class="ic">🌳</div><div><div class="no">01</div></div></div><h3>主幹式開發</h3><div class="en">Trunk-Based Development</div><p>多數提交進主幹，發布分支短命存在，降低長期分支合併的複雜度。</p></div><div class="dim" style="--c:#d64545"><div class="top"><div class="ic">🔀</div><div><div class="no">02</div></div></div><h3>Pull Request</h3><div class="en">Pull Requests</div><p>協作審查程式碼變更，比較來源分支與目的分支後才合併。</p></div><div class="dim" style="--c:#3b7dd8"><div class="top"><div class="ic">🤖</div><div><div class="no">03</div></div></div><h3>Amazon CodeGuru Reviewer</h3><div class="en">Automated Code Review</div><p>機器學習驅動的程式碼審查，找出難以察覺的缺陷並提供修復建議。</p></div><div class="dim" style="--c:#1aa9a3"><div class="top"><div class="ic">🏗️</div><div><div class="no">04</div></div></div><h3>AWS CodeBuild</h3><div class="en">Fully-Managed Build</div><p>全託管建置服務，編譯程式碼、執行測試並產出軟體套件，隨用量擴展。</p></div><div class="dim" style="--c:#7c6ce0"><div class="top"><div class="ic">📄</div><div><div class="no">05</div></div></div><h3>buildspec.yml</h3><div class="en">Build Specification</div><p>定義 install/pre_build/build/post_build 等階段指令的 YAML 建置規格檔。</p></div><div class="dim" style="--c:#128b86"><div class="top"><div class="ic">🗄️</div><div><div class="no">06</div></div></div><h3>建置快取</h3><div class="en">Dependency Caching</div><p>快取相依套件縮短建置時間，可用 S3 生命週期原則使快取到期失效。</p></div><div class="dim" style="--c:#e17b00"><div class="top"><div class="ic">🚀</div><div><div class="no">07</div></div></div><h3>AWS CodeDeploy</h3><div class="en">Automated Deployments</div><p>全託管部署服務，自動化將程式部署到 EC2、Fargate、Lambda 等平台，避免停機。</p></div><div class="dim" style="--c:#1b2838"><div class="top"><div class="ic">🪝</div><div><div class="no">08</div></div></div><h3>生命週期事件掛勾</h3><div class="en">Lifecycle Event Hooks</div><p>ApplicationStop → BeforeInstall → AfterInstall → ApplicationStart → ValidateService 的 AppSpec 掛勾順序。</p></div></div><div class="section-h"><div class="n">✓</div><div><h2>隨堂測驗考點</h2><div class="en">Knowledge Checks</div></div></div><div class="kc"><div class="qcard"><div class="qn">Knowledge Check 1</div><div class="q">哪個服務能自動化程式碼審查並提供智慧建議？</div><div class="ans"><div class="ck">✓</div><p><b>Amazon CodeGuru</b>。</p></div></div><div class="qcard"><div class="qn">Knowledge Check 2</div><div class="q">AppSpec 檔案中「version」區塊代表什麼？</div><div class="ans"><div class="ck">✓</div><p><b>目前僅允許值 0.0</b>，保留供 CodeDeploy 未來使用。</p></div></div></div><div class="takeaway"><div class="star">⭐</div><div><h3>一句話總結</h3><p>從原始碼控制到建置與部署，<b>CodeBuild + CodeDeploy</b> 把 CI 變成可重複、可驗證的自動化流程。</p></div></div><footer>Module 4a: CI/CD with Development Tools — Part 1 · DevOps Engineering on AWS</footer></div></body></html>
